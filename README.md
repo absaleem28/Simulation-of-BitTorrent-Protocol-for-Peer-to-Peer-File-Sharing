@@ -1,11 +1,17 @@
-SUBJECT: APD
+TITLE: 
+
+	SIMULATION OF BITTORENT PROTOCOL FOR PEER-TO-PEER FILE SHARING
 
 DESCRIPTION:
+
     This programme is a simulation for the BitTorrent protocol. In order to implement this protocol, a tracker is needed, which has the role of helping clients to find necessary information about certain files. Clients who participate in this simulation can initially own certain files, and other files they want can be obtained by other clients who initially own them or become owners during the course of the simulation. During the running of the simulation, the client can go through several states with respect to a file. These can be SEED when the client owns the entire file, PEER when the client only owns part of the file, and LEECHER when the client does not own or does not want to share the file with other clients.
 
 SOLUTION:
+
     Functions:
+    
         * CLIENT PERSPECTIVE:
+	
             1. void peer():
                 Initially, each client must open and read the content of the file (calling the "struct Client_Files *peer_read_from_file()" function) corresponding to its rank. After finishing the initiator step, the client waits confirmation from the TRACKER so that it can start the 2 threads that handle both the download ("void *download_thread_func()") and the response to other clients' requests ("void *upload_thread_func( )").
             
@@ -46,6 +52,7 @@ SOLUTION:
                         * command 3 (client changed source of download): decrease traffic on the client
 
     * TRACKER PERSPECTIVE:
+    
         1. void tracker():
             Initially, the TRACKER needs a swarm for each file and for this the function "struct File_Swarm * tracker_init_files_swarm()" is called which allocates space for every file swarm. After the space is allocated the function "void tracker_init_step()" is called in order to receive from each client informations of what files they own (SEED) and for each file the TRACKER receive every segment. After the first step is done, the TRACKER sends an "ack" message to each client which means that they can now continue their process of dowloading files.
             After the initial step, the tracker starts to listen requests from the clients and to respond to them. The TRACKER expects the rank and the command from any client and based on those the following are expected:
@@ -63,7 +70,10 @@ SOLUTION:
 
 
 SOLUTION's AUTHOR:
+
 	AL BOURI SALEEM,
 	FACULTY OF AUTOMATIC CONTROL AND COMPUTER SCIENCE, UPB
 
-DATA: JANUARY, 2024
+DATA:
+
+	JANUARY, 2024
